@@ -21,5 +21,15 @@ namespace CabInvoiceGeneratorTest
             Assert.AreEqual(expected, fare);
         }
 
+        [TestMethod]
+        //TC 2
+        public void GivenMultipleRide_ShouldReturn_InvoiceSummary()
+        {
+            invoice = new InvoiceGenerator(RideType.NORMAL);
+            Ride[] rides = { new Ride(2.0, 5), new Ride(0.1, 5) };
+            InvoiceSummary summary = invoice.CalculateFare(rides);
+            InvoiceSummary expectedSummary = new InvoiceSummary(2, 35.0);
+            Assert.AreEqual(expectedSummary.GetType(), summary.GetType());
+        }
     }
 }
